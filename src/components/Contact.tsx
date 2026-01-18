@@ -7,7 +7,7 @@ import { Calendar, Clock, Shield, MessageCircle, Send, ArrowRight } from "lucide
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-const CALENDLY_URL = "https://calendly.com/roianalytic"; // User needs to update this
+const CALENDLY_URL = "https://calendly.com/ali-hourag/30min";
 
 const Contact = () => {
   const { toast } = useToast();
