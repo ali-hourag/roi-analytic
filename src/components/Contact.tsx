@@ -8,7 +8,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const CALENDLY_URL = "https://calendly.com/roianalytic-info/nueva-reunion";
+const CALENDLY_URL = "https://calendly.com/roianalytic-info/30-min";
 
 const Contact = () => {
   return (
