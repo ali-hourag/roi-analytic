@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "ROI ANALYTIC | Publicidad Digital que Genera Resultados",
+    "description": "Agencia especializada en Google Ads y Meta Ads. Campañas enfocadas en rentabilidad para clínicas, mudanzas, coaches y más. Garantía de 30 días.",
+    "ogTitle": "ROI Analytic | Publicidad Digital que Genera Resultados",
+    "ogDescription": "Agencia especializada en Google Ads y Meta Ads. Campañas enfocadas en rentabilidad."
+  },
+  "nav": {
+    "sectors": "Sectores",
+    "whyRoi": "¿Por qué ROI ANALYTIC?",
+    "contact": "Contactar"
+  },
+  "hero": {
+    "badge": "Especialistas en Google Ads",
+    "title": "Publicidad digital que",
+    "titleHighlight": "genera resultados",
+    "subtitle": "Diseñamos y gestionamos campañas de Google Ads enfocadas exclusivamente en rentabilidad. Captamos clientes listos para comprar.",
+    "cta": "Solicitar sesión gratuita",
+    "kpis": {
+      "leadCost": "Reducción coste por lead",
+      "guarantee": "Garantía de resultados",
+      "roas": "ROAS medio de campañas",
+      "leads": "Leads cualificados"
+    }
+  },
+  "sectors": {
+    "badge": "Sectores",
+    "title": "Industrias en las que operamos",
+    "subtitle": "Trabajamos con empresas premium de distintos sectores, aplicando estrategias de Google Ads adaptadas a cada industria para maximizar su rentabilidad.",
+    "items": {
+      "jewelry": {
+        "title": "Joyerías",
+        "description": "Campañas orientadas a clientes con alto poder adquisitivo que buscan piezas exclusivas y de diseño."
+      },
+      "hotels": {
+        "title": "Hoteles",
+        "description": "Estrategias de captación para maximizar reservas directas y reducir la dependencia de intermediarios."
+      },
+      "gyms": {
+        "title": "Gimnasios",
+        "description": "Generación de leads para nuevas altas y membresías, segmentados por zona y perfil de cliente."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Campañas de Shopping y Search enfocadas en ROAS y conversión directa para tiendas online."
+      },
+      "construction": {
+        "title": "Construcción",
+        "description": "Captación de proyectos de obra nueva, reformas integrales y servicios de construcción especializados."
+      },
+      "moving": {
+        "title": "Mudanzas",
+        "description": "Leads cualificados de clientes que buscan activamente servicios de mudanzas locales y nacionales."
+      },
+      "clinics": {
+        "title": "Clínicas Dentales",
+        "description": "Pacientes con intención real de contratar tratamientos de alto valor como implantes u ortodoncia."
+      }
+    },
+    "international": {
+      "title": "Presencia internacional",
+      "description": "Trabajamos y hemos trabajado con empresas premium en distintos países, adaptando cada estrategia al mercado local para garantizar resultados."
+    },
+    "countries": {
+      "spain": "España",
+      "netherlands": "Países Bajos",
+      "uae": "Emiratos Árabes Unidos"
+    }
+  },
+  "whyRoi": {
+    "badge": "Nuestra diferencia",
+    "title": "¿Por qué ROI ANALYTIC?",
+    "items": {
+      "roi": {
+        "title": "100% enfocados en ROI",
+        "description": "Cada decisión está orientada a generar retorno sobre la inversión."
+      },
+      "availability": {
+        "title": "Disponibilidad limitada",
+        "description": "Trabajamos con pocos clientes por zona para evitar competencia."
+      },
+      "optimization": {
+        "title": "Optimización continua",
+        "description": "Revisión y ajuste diario de campañas para maximizar resultados."
+      },
+      "specialization": {
+        "title": "Especialización sectorial",
+        "description": "Conocemos las palabras clave y la intención de compra de cada sector."
+      },
+      "guarantee": {
+        "title": "Garantía de 30 días",
+        "description": "Si no cumplimos con lo acordado en el contrato, devolvemos el 100% del coste de gestión."
+      },
+      "results": {
+        "title": "Resultados medibles",
+        "description": "Seguimiento real de llamadas, formularios y WhatsApp."
+      }
+    }
+  },
+  "contact": {
+    "title": "¿Hablamos?",
+    "subtitle": "Cuéntanos sobre tu negocio y te contactaremos para valorar cómo podemos ayudarte.",
+    "form": {
+      "name": "Nombre completo *",
+      "namePlaceholder": "Tu nombre",
+      "email": "Email *",
+      "emailPlaceholder": "tu@email.com",
+      "phone": "Teléfono *",
+      "phonePlaceholder": "+34 600 000 000",
+      "sector": "Sector *",
+      "sectorPlaceholder": "Selecciona tu sector",
+      "message": "¿Cómo podemos ayudarte?",
+      "messagePlaceholder": "Cuéntanos brevemente qué necesitas...",
+      "submit": "Enviar mensaje"
+    },
+    "sectors": {
+      "jewelry": "Joyerías",
+      "hotels": "Hoteles",
+      "gyms": "Gimnasios",
+      "ecommerce": "E-commerce",
+      "construction": "Construcción",
+      "moving": "Mudanzas",
+      "clinics": "Clínicas Dentales",
+      "other": "Otro"
+    },
+    "trust": {
+      "response": "Respuesta en 24h",
+      "guarantee": "Garantía 30 días",
+      "noCommitment": "Sin compromiso"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 ROI ANALYTIC. Publicidad digital enfocada en resultados."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "Lo sentimos, la página que buscas no existe.",
+    "backHome": "Volver al inicio"
+  },
+  "language": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English",
+    "nl": "Nederlands"
+  }
+}

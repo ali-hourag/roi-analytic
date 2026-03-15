@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 import logo from "@/assets/logo-roi-analytic.png";
 
 const Footer = () => {
+  const { t } = useTranslation();
+  const { lang } = useParams<{ lang: string }>();
+
   return (
     <motion.footer
       initial={{ opacity: 0 }}
@@ -12,11 +17,13 @@ const Footer = () => {
       <div className="container">
         <div className="flex flex-col md:flex-row items-center justify-center gap-6">
           <div className="flex items-center gap-4">
-            <img src={logo} alt="ROI ANALYTIC" className="h-10 w-auto" />
+            <a href={lang ? `/${lang}#` : "#"}>
+              <img src={logo} alt="ROI ANALYTIC" className="h-10 w-auto" />
+            </a>
           </div>
 
           <p className="text-sm text-muted-foreground text-center">
-            © 2026 ROI ANALYTIC. Publicidad digital enfocada en resultados.
+            {t("footer.copyright")}
           </p>
         </div>
       </div>

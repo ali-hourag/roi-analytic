@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "ROI ANALYTIC | Online Advertentie die Resultaat Levert",
+    "description": "Bureau gespecialiseerd in Google Ads en Meta Ads. Campagnes gericht op rendement voor klinieken, verhuizingen, coaches en meer. 30 dagen garantie.",
+    "ogTitle": "ROI Analytic | Online Advertentie die Resultaat Levert",
+    "ogDescription": "Bureau gespecialiseerd in Google Ads en Meta Ads. Campagnes gericht op rendement."
+  },
+  "nav": {
+    "sectors": "Sectoren",
+    "whyRoi": "Waarom ROI ANALYTIC?",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Specialisten in Google Ads",
+    "title": "Online advertentie die",
+    "titleHighlight": "resultaat levert",
+    "subtitle": "We ontwerpen en beheren Google Ads-campagnes uitsluitend gericht op rendement. We bereiken klanten die klaar zijn om te kopen.",
+    "cta": "Gratis sessie aanvragen",
+    "kpis": {
+      "leadCost": "Lagere kosten per lead",
+      "guarantee": "Resultaatgarantie",
+      "roas": "Gemiddelde ROAS van campagnes",
+      "leads": "Gekwalificeerde leads"
+    }
+  },
+  "sectors": {
+    "badge": "Sectoren",
+    "title": "Branches waarin we actief zijn",
+    "subtitle": "We werken met premium bedrijven in verschillende sectoren, met Google Ads-strategieën afgestemd op elke branche voor maximaal rendement.",
+    "items": {
+      "jewelry": {
+        "title": "Juweliers",
+        "description": "Campagnes gericht op klanten met hoog koopvermogen die exclusieve en designstukken zoeken."
+      },
+      "hotels": {
+        "title": "Hotels",
+        "description": "Acquisitiestrategieën om directe reserveringen te maximaliseren en afhankelijkheid van tussenpersonen te verminderen."
+      },
+      "gyms": {
+        "title": "Sportscholen",
+        "description": "Leadgeneratie voor nieuwe aanmeldingen en lidmaatschappen, gesegmenteerd op regio en klantprofiel."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Shopping- en Search-campagnes gericht op ROAS en directe conversie voor webshops."
+      },
+      "construction": {
+        "title": "Bouw",
+        "description": "Acquisitie van nieuwbouwprojecten, totale renovaties en gespecialiseerde bouwdiensten."
+      },
+      "moving": {
+        "title": "Verhuizingen",
+        "description": "Gekwalificeerde leads van klanten die actief op zoek zijn naar lokale en landelijke verhuizers."
+      },
+      "clinics": {
+        "title": "Tandklinieken",
+        "description": "Patiënten met reële intentie om hoogwaardige behandelingen zoals implantaten of orthodontie af te nemen."
+      }
+    },
+    "international": {
+      "title": "Internationale aanwezigheid",
+      "description": "We werken en hebben gewerkt met premium bedrijven in verschillende landen, waarbij we elke strategie aanpassen aan de lokale markt voor gegarandeerde resultaten."
+    },
+    "countries": {
+      "spain": "Spanje",
+      "netherlands": "Nederland",
+      "uae": "Verenigde Arabische Emiraten"
+    }
+  },
+  "whyRoi": {
+    "badge": "Ons verschil",
+    "title": "Waarom ROI ANALYTIC?",
+    "items": {
+      "roi": {
+        "title": "100% gericht op ROI",
+        "description": "Elke beslissing is gericht op het genereren van rendement op investering."
+      },
+      "availability": {
+        "title": "Beperkte beschikbaarheid",
+        "description": "We werken met weinig klanten per regio om concurrentie te voorkomen."
+      },
+      "optimization": {
+        "title": "Continue optimalisatie",
+        "description": "Dagelijkse review en bijsturing van campagnes voor maximale resultaten."
+      },
+      "specialization": {
+        "title": "Sector specialisatie",
+        "description": "We kennen de zoekwoorden en koopintentie van elke sector."
+      },
+      "guarantee": {
+        "title": "30 dagen garantie",
+        "description": "Leveren we niet wat in het contract staat, dan retourneren we 100% van het beheerkosten."
+      },
+      "results": {
+        "title": "Meetbare resultaten",
+        "description": "Echte tracking van telefoontjes, formulieren en WhatsApp."
+      }
+    }
+  },
+  "contact": {
+    "title": "Laten we praten",
+    "subtitle": "Vertel over uw bedrijf en we nemen contact op om te kijken hoe we kunnen helpen.",
+    "form": {
+      "name": "Volledige naam *",
+      "namePlaceholder": "Uw naam",
+      "email": "E-mail *",
+      "emailPlaceholder": "u@email.com",
+      "phone": "Telefoon *",
+      "phonePlaceholder": "+31 6 00000000",
+      "sector": "Sector *",
+      "sectorPlaceholder": "Selecteer uw sector",
+      "message": "Hoe kunnen we helpen?",
+      "messagePlaceholder": "Vertel kort wat u nodig heeft...",
+      "submit": "Bericht versturen"
+    },
+    "sectors": {
+      "jewelry": "Juweliers",
+      "hotels": "Hotels",
+      "gyms": "Sportscholen",
+      "ecommerce": "E-commerce",
+      "construction": "Bouw",
+      "moving": "Verhuizingen",
+      "clinics": "Tandklinieken",
+      "other": "Anders"
+    },
+    "trust": {
+      "response": "Reactie binnen 24u",
+      "guarantee": "30 dagen garantie",
+      "noCommitment": "Zonder verplichting"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 ROI ANALYTIC. Online advertentie gericht op resultaat."
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "description": "Deze pagina bestaat niet.",
+    "backHome": "Terug naar start"
+  },
+  "language": {
+    "label": "Taal",
+    "es": "Español",
+    "en": "English",
+    "nl": "Nederlands"
+  }
+}

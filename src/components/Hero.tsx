@@ -1,11 +1,20 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Shield, Target } from "lucide-react";
 
 const Hero = () => {
+  const { t } = useTranslation();
   const scrollToContact = () => {
     document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const kpis = [
+    { icon: TrendingUp, value: "-40%", labelKey: "hero.kpis.leadCost" },
+    { icon: Shield, value: "30 días", labelKey: "hero.kpis.guarantee" },
+    { icon: Target, value: "4.5x", labelKey: "hero.kpis.roas" },
+    { icon: TrendingUp, value: "+120%", labelKey: "hero.kpis.leads" },
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-hero pt-20">
@@ -40,7 +49,7 @@ const Hero = () => {
             >
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               <span className="text-sm font-medium text-accent-foreground">
-                Especialistas en Google Ads
+                {t("hero.badge")}
               </span>
             </motion.div>
 
@@ -50,8 +59,8 @@ const Hero = () => {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
             >
-              Publicidad digital que{" "}
-              <span className="text-gradient-primary">genera resultados</span>
+              {t("hero.title")}{" "}
+              <span className="text-gradient-primary">{t("hero.titleHighlight")}</span>
             </motion.h1>
 
             <motion.p
@@ -60,9 +69,7 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
             >
-              Diseñamos y gestionamos campañas de Google Ads enfocadas
-              exclusivamente en rentabilidad. Captamos clientes listos para
-              comprar.
+              {t("hero.subtitle")}
             </motion.p>
 
             <motion.div
@@ -72,7 +79,7 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <Button variant="hero" size="lg" onClick={scrollToContact}>
-                Solicitar sesión gratuita
+                {t("hero.cta")}
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </motion.div>
@@ -83,14 +90,9 @@ const Hero = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-4 pb-6 sm:pb-0"
           >
-            {[
-              { icon: TrendingUp, value: "-40%", label: "Reducción coste por lead" },
-              { icon: Shield, value: "30 días", label: "Garantía de resultados" },
-              { icon: Target, value: "4.5x", label: "ROAS medio de campañas" },
-              { icon: TrendingUp, value: "+120%", label: "Leads cualificados" },
-            ].map((kpi, i) => (
+            {kpis.map((kpi, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -106,7 +108,7 @@ const Hero = () => {
                   <p className="text-2xl sm:text-3xl font-bold font-display text-foreground">
                     {kpi.value}
                   </p>
-                  <p className="text-sm text-muted-foreground">{kpi.label}</p>
+                  <p className="text-sm text-muted-foreground">{t(kpi.labelKey)}</p>
                 </div>
               </motion.div>
             ))}

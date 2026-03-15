@@ -1,11 +1,23 @@
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import logo from "@/assets/logo-roi-analytic.png";
 
 const Header = () => {
+  const { t } = useTranslation();
+  const { lang } = useParams<{ lang: string }>();
+  const base = lang ? `/${lang}` : "";
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const navItems = [
+    { labelKey: "nav.sectors", id: "sectores" },
+    { labelKey: "nav.whyRoi", id: "why-roi-analytic" },
+  ];
 
   return (
     <motion.header
@@ -16,7 +28,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex h-16 items-center justify-between md:h-20">
         <motion.a
-          href="#"
+          href={`${base}#`}
           className="flex items-center gap-2"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -25,10 +37,7 @@ const Header = () => {
         </motion.a>
 
         <nav className="hidden md:flex items-center gap-8">
-          {[
-            { label: "Sectores", id: "sectores" },
-            { label: "¿Por qué ROI ANALYTIC?", id: "why-roi-analytic" },
-          ].map((item) => (
+          {navItems.map((item) => (
             <motion.button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
@@ -36,18 +45,21 @@ const Header = () => {
               whileHover={{ y: -1 }}
               whileTap={{ y: 0 }}
             >
-              {item.label}
+              {t(item.labelKey)}
             </motion.button>
           ))}
         </nav>
 
-        <Button
-          variant="hero"
-          size="sm"
-          onClick={() => scrollToSection("contacto")}
-        >
-          Contactar
-        </Button>
+        <div className="flex items-center gap-2">
+          <LanguageSwitcher />
+          <Button
+            variant="hero"
+            size="sm"
+            onClick={() => scrollToSection("contacto")}
+          >
+            {t("nav.contact")}
+          </Button>
+        </div>
       </div>
     </motion.header>
   );

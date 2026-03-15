@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "ROI ANALYTIC | Digital Advertising That Delivers Results",
+    "description": "Agency specialised in Google Ads and Meta Ads. Campaigns focused on profitability for clinics, removals, coaches and more. 30-day guarantee.",
+    "ogTitle": "ROI Analytic | Digital Advertising That Delivers Results",
+    "ogDescription": "Agency specialised in Google Ads and Meta Ads. Campaigns focused on profitability."
+  },
+  "nav": {
+    "sectors": "Sectors",
+    "whyRoi": "Why ROI ANALYTIC?",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Google Ads specialists",
+    "title": "Digital advertising that",
+    "titleHighlight": "delivers results",
+    "subtitle": "We design and manage Google Ads campaigns focused exclusively on profitability. We attract customers ready to buy.",
+    "cta": "Request free session",
+    "kpis": {
+      "leadCost": "Lead cost reduction",
+      "guarantee": "Results guarantee",
+      "roas": "Average campaign ROAS",
+      "leads": "Qualified leads"
+    }
+  },
+  "sectors": {
+    "badge": "Sectors",
+    "title": "Industries we work with",
+    "subtitle": "We work with premium businesses across sectors, applying Google Ads strategies tailored to each industry to maximise profitability.",
+    "items": {
+      "jewelry": {
+        "title": "Jewellery",
+        "description": "Campaigns targeting high-spending customers looking for exclusive, designer pieces."
+      },
+      "hotels": {
+        "title": "Hotels",
+        "description": "Acquisition strategies to maximise direct bookings and reduce reliance on intermediaries."
+      },
+      "gyms": {
+        "title": "Gyms",
+        "description": "Lead generation for new sign-ups and memberships, segmented by area and customer profile."
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Shopping and Search campaigns focused on ROAS and direct conversion for online stores."
+      },
+      "construction": {
+        "title": "Construction",
+        "description": "Acquisition of new-build projects, full refurbishments and specialised construction services."
+      },
+      "moving": {
+        "title": "Removals",
+        "description": "Qualified leads from customers actively looking for local and national removal services."
+      },
+      "clinics": {
+        "title": "Dental Clinics",
+        "description": "Patients with real intent to book high-value treatments such as implants or orthodontics."
+      }
+    },
+    "international": {
+      "title": "International presence",
+      "description": "We work and have worked with premium businesses in different countries, adapting each strategy to the local market to guarantee results."
+    },
+    "countries": {
+      "spain": "Spain",
+      "netherlands": "Netherlands",
+      "uae": "United Arab Emirates"
+    }
+  },
+  "whyRoi": {
+    "badge": "What sets us apart",
+    "title": "Why ROI ANALYTIC?",
+    "items": {
+      "roi": {
+        "title": "100% ROI-focused",
+        "description": "Every decision is geared towards generating return on investment."
+      },
+      "availability": {
+        "title": "Limited availability",
+        "description": "We work with few clients per area to avoid competition."
+      },
+      "optimization": {
+        "title": "Continuous optimisation",
+        "description": "Daily review and adjustment of campaigns to maximise results."
+      },
+      "specialization": {
+        "title": "Sector specialisation",
+        "description": "We know the keywords and purchase intent of each sector."
+      },
+      "guarantee": {
+        "title": "30-day guarantee",
+        "description": "If we don't deliver what was agreed in the contract, we refund 100% of the management fee."
+      },
+      "results": {
+        "title": "Measurable results",
+        "description": "Real tracking of calls, forms and WhatsApp."
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's talk",
+    "subtitle": "Tell us about your business and we'll get in touch to see how we can help.",
+    "form": {
+      "name": "Full name *",
+      "namePlaceholder": "Your name",
+      "email": "Email *",
+      "emailPlaceholder": "you@email.com",
+      "phone": "Phone *",
+      "phonePlaceholder": "+34 600 000 000",
+      "sector": "Sector *",
+      "sectorPlaceholder": "Select your sector",
+      "message": "How can we help?",
+      "messagePlaceholder": "Tell us briefly what you need...",
+      "submit": "Send message"
+    },
+    "sectors": {
+      "jewelry": "Jewellery",
+      "hotels": "Hotels",
+      "gyms": "Gyms",
+      "ecommerce": "E-commerce",
+      "construction": "Construction",
+      "moving": "Removals",
+      "clinics": "Dental Clinics",
+      "other": "Other"
+    },
+    "trust": {
+      "response": "Response within 24h",
+      "guarantee": "30-day guarantee",
+      "noCommitment": "No commitment"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 ROI ANALYTIC. Digital advertising focused on results."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, the page you're looking for doesn't exist.",
+    "backHome": "Back to home"
+  },
+  "language": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English",
+    "nl": "Nederlands"
+  }
+}

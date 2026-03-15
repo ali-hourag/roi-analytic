@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Gem, Hotel, Dumbbell, ShoppingCart, HardHat, Truck, Stethoscope, Globe } from "lucide-react";
 
 import sectorJoyerias from "@/assets/sector-joyerias.jpg";
@@ -6,59 +7,22 @@ import sectorHoteles from "@/assets/sector-hoteles.jpg";
 import sectorGimnasios from "@/assets/sector-gimnasios.jpg";
 import sectorEcommerce from "@/assets/sector-ecommerce.jpg";
 import sectorConstruccion from "@/assets/sector-construccion.jpg";
-import sectorMudanzas from "@/assets/sector-mudanzas.jpg";
+import sectorMudanzas from "@/assets/sector-mudanzas.webp";
 import sectorClinicas from "@/assets/sector-clinicas.jpg";
 
-const sectors = [
-  {
-    icon: Gem,
-    title: "Joyerías",
-    description: "Campañas orientadas a clientes con alto poder adquisitivo que buscan piezas exclusivas y de diseño.",
-    image: sectorJoyerias,
-  },
-  {
-    icon: Hotel,
-    title: "Hoteles",
-    description: "Estrategias de captación para maximizar reservas directas y reducir la dependencia de intermediarios.",
-    image: sectorHoteles,
-  },
-  {
-    icon: Dumbbell,
-    title: "Gimnasios",
-    description: "Generación de leads para nuevas altas y membresías, segmentados por zona y perfil de cliente.",
-    image: sectorGimnasios,
-  },
-  {
-    icon: ShoppingCart,
-    title: "E-commerce",
-    description: "Campañas de Shopping y Search enfocadas en ROAS y conversión directa para tiendas online.",
-    image: sectorEcommerce,
-  },
-  {
-    icon: HardHat,
-    title: "Construcción",
-    description: "Captación de proyectos de obra nueva, reformas integrales y servicios de construcción especializados.",
-    image: sectorConstruccion,
-  },
-  {
-    icon: Truck,
-    title: "Mudanzas",
-    description: "Leads cualificados de clientes que buscan activamente servicios de mudanzas locales y nacionales.",
-    image: sectorMudanzas,
-  },
-  {
-    icon: Stethoscope,
-    title: "Clínicas Dentales",
-    description: "Pacientes con intención real de contratar tratamientos de alto valor como implantes u ortodoncia.",
-    image: sectorClinicas,
-  },
+const sectorKeys = ["jewelry", "hotels", "gyms", "ecommerce", "construction", "moving", "clinics"] as const;
+const sectorsData: { key: (typeof sectorKeys)[number]; icon: typeof Gem; image: string }[] = [
+  { key: "jewelry", icon: Gem, image: sectorJoyerias },
+  { key: "hotels", icon: Hotel, image: sectorHoteles },
+  { key: "gyms", icon: Dumbbell, image: sectorGimnasios },
+  { key: "ecommerce", icon: ShoppingCart, image: sectorEcommerce },
+  { key: "construction", icon: HardHat, image: sectorConstruccion },
+  { key: "moving", icon: Truck, image: sectorMudanzas },
+  { key: "clinics", icon: Stethoscope, image: sectorClinicas },
 ];
 
-const countries = [
-  { name: "España", flag: "🇪🇸" },
-  { name: "Países Bajos", flag: "🇳🇱" },
-  { name: "Emiratos Árabes Unidos", flag: "🇦🇪" },
-];
+const countryKeys = ["spain", "netherlands", "uae"] as const;
+const countryFlags = ["🇪🇸", "🇳🇱", "🇦🇪"];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -78,6 +42,8 @@ const cardVariants = {
 };
 
 const Sectors = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="sectores" className="section-padding bg-muted/30">
       <div className="container">
@@ -89,13 +55,13 @@ const Sectors = () => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-accent text-accent-foreground text-sm font-medium mb-4">
-            Sectores
+            {t("sectors.badge")}
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Industrias en las que operamos
+            {t("sectors.title")}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Trabajamos con empresas premium de distintos sectores, aplicando estrategias de Google Ads adaptadas a cada industria para maximizar su rentabilidad.
+            {t("sectors.subtitle")}
           </p>
         </motion.div>
 
@@ -106,9 +72,9 @@ const Sectors = () => {
           viewport={{ once: true, margin: "-50px" }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
-          {sectors.map((sector) => (
+          {sectorsData.map((sector) => (
             <motion.div
-              key={sector.title}
+              key={sector.key}
               variants={cardVariants}
               whileHover={{ y: -8, scale: 1.02 }}
               className="group"
@@ -117,7 +83,7 @@ const Sectors = () => {
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={sector.image}
-                    alt={sector.title}
+                    alt={t(`sectors.items.${sector.key}.title`)}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                   />
@@ -127,9 +93,9 @@ const Sectors = () => {
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display text-lg font-bold mb-2">{sector.title}</h3>
+                  <h3 className="font-display text-lg font-bold mb-2">{t(`sectors.items.${sector.key}.title`)}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {sector.description}
+                    {t(`sectors.items.${sector.key}.description`)}
                   </p>
                 </div>
               </div>
@@ -152,17 +118,17 @@ const Sectors = () => {
                   <div className="w-12 h-12 rounded-xl bg-gradient-cta flex items-center justify-center">
                     <Globe className="w-6 h-6 text-primary-foreground" />
                   </div>
-                  <h3 className="font-display text-2xl font-bold">Presencia internacional</h3>
+                  <h3 className="font-display text-2xl font-bold">{t("sectors.international.title")}</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed max-w-lg">
-                  Trabajamos y hemos trabajado con empresas premium en distintos países, adaptando cada estrategia al mercado local para garantizar resultados.
+                  {t("sectors.international.description")}
                 </p>
               </div>
               <div className="flex gap-6">
-                {countries.map((country) => (
-                  <div key={country.name} className="flex flex-col items-center gap-2">
-                    <span className="text-4xl">{country.flag}</span>
-                    <span className="text-sm font-medium text-foreground">{country.name}</span>
+                {countryKeys.map((key, idx) => (
+                  <div key={key} className="flex flex-col items-center gap-2">
+                    <span className="text-4xl">{countryFlags[idx]}</span>
+                    <span className="text-sm font-medium text-foreground">{t(`sectors.countries.${key}`)}</span>
                   </div>
                 ))}
               </div>

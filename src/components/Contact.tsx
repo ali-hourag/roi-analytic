@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,18 +19,10 @@ import {
   Shield,
 } from "lucide-react";
 
-const SECTORS = [
-  "Joyerías",
-  "Hoteles",
-  "Gimnasios",
-  "E-commerce",
-  "Construcción",
-  "Mudanzas",
-  "Clínicas Dentales",
-  "Otro",
-];
+const SECTOR_KEYS = ["jewelry", "hotels", "gyms", "ecommerce", "construction", "moving", "clinics", "other"] as const;
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,9 +33,10 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Consulta de ${formData.name} - ${formData.sector}`);
+    const sectorLabel = formData.sector ? t(`contact.sectors.${formData.sector}`) : formData.sector;
+    const subject = encodeURIComponent(`Consulta de ${formData.name} - ${sectorLabel}`);
     const body = encodeURIComponent(
-      `Nombre: ${formData.name}\nEmail: ${formData.email}\nTeléfono: ${formData.phone}\nSector: ${formData.sector}\n\nMensaje:\n${formData.message}`
+      `Nombre: ${formData.name}\nEmail: ${formData.email}\nTeléfono: ${formData.phone}\nSector: ${sectorLabel}\n\nMensaje:\n${formData.message}`
     );
     window.location.href = `mailto:roianalytic@hotmail.com?subject=${subject}&body=${body}`;
   };
@@ -70,10 +64,10 @@ const Contact = () => {
           </motion.div>
 
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            ¿Hablamos?
+            {t("contact.title")}
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Cuéntanos sobre tu negocio y te contactaremos para valorar cómo podemos ayudarte.
+            {t("contact.subtitle")}
           </p>
         </motion.div>
 
@@ -88,10 +82,10 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Nombre completo *</Label>
+                  <Label htmlFor="name">{t("contact.form.name")}</Label>
                   <Input
                     id="name"
-                    placeholder="Tu nombre"
+                    placeholder={t("contact.form.namePlaceholder")}
                     required
                     maxLength={100}
                     value={formData.name}
@@ -99,11 +93,11 @@ const Contact = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
+                  <Label htmlFor="email">{t("contact.form.email")}</Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="tu@email.com"
+                    placeholder={t("contact.form.emailPlaceholder")}
                     required
                     maxLength={255}
                     value={formData.email}
@@ -114,11 +108,11 @@ const Contact = () => {
 
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Teléfono *</Label>
+                  <Label htmlFor="phone">{t("contact.form.phone")}</Label>
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="+34 600 000 000"
+                    placeholder={t("contact.form.phonePlaceholder")}
                     required
                     maxLength={20}
                     value={formData.phone}
@@ -126,19 +120,19 @@ const Contact = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="sector">Sector *</Label>
+                  <Label htmlFor="sector">{t("contact.form.sector")}</Label>
                   <Select
                     required
                     value={formData.sector}
                     onValueChange={(value) => setFormData({ ...formData, sector: value })}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona tu sector" />
+                      <SelectValue placeholder={t("contact.form.sectorPlaceholder")} />
                     </SelectTrigger>
                     <SelectContent>
-                      {SECTORS.map((s) => (
-                        <SelectItem key={s} value={s}>
-                          {s}
+                      {SECTOR_KEYS.map((key) => (
+                        <SelectItem key={key} value={key}>
+                          {t(`contact.sectors.${key}`)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -147,10 +141,10 @@ const Contact = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message">¿Cómo podemos ayudarte?</Label>
+                <Label htmlFor="message">{t("contact.form.message")}</Label>
                 <Textarea
                   id="message"
-                  placeholder="Cuéntanos brevemente qué necesitas..."
+                  placeholder={t("contact.form.messagePlaceholder")}
                   rows={4}
                   maxLength={1000}
                   value={formData.message}
@@ -160,7 +154,7 @@ const Contact = () => {
 
               <Button variant="hero" size="lg" type="submit" className="w-full">
                 <Send className="w-5 h-5" />
-                Enviar mensaje
+                {t("contact.form.submit")}
               </Button>
             </form>
           </div>
@@ -175,15 +169,15 @@ const Contact = () => {
           >
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>Respuesta en 24h</span>
+              <span>{t("contact.trust.response")}</span>
             </div>
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4" />
-              <span>Garantía 30 días</span>
+              <span>{t("contact.trust.guarantee")}</span>
             </div>
             <div className="flex items-center gap-2">
               <MessageCircle className="w-4 h-4" />
-              <span>Sin compromiso</span>
+              <span>{t("contact.trust.noCommitment")}</span>
             </div>
           </motion.div>
         </motion.div>
