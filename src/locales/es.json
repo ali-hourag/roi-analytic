@@ -101,17 +101,40 @@
     "title": "¿Hablamos?",
     "subtitle": "Cuéntanos sobre tu negocio y te contactaremos para valorar cómo podemos ayudarte.",
     "form": {
-      "name": "Nombre completo *",
-      "namePlaceholder": "Tu nombre",
+      "company": "Nombre de empresa *",
+      "companyPlaceholder": "Tu empresa",
       "email": "Email *",
       "emailPlaceholder": "tu@email.com",
+      "country": "País",
+      "countryPlaceholder": "Código",
       "phone": "Teléfono *",
-      "phonePlaceholder": "+34 600 000 000",
+      "phonePlaceholder": "600 000 000",
       "sector": "Sector *",
       "sectorPlaceholder": "Selecciona tu sector",
       "message": "¿Cómo podemos ayudarte?",
       "messagePlaceholder": "Cuéntanos brevemente qué necesitas...",
       "submit": "Enviar mensaje"
+    },
+    "validation": {
+      "required": "Campo obligatorio",
+      "invalidEmail": "Email no válido",
+      "invalidPhone": "Introduce un número de teléfono válido para el país seleccionado."
+    },
+    "countries": {
+      "ES": "España",
+      "NL": "Países Bajos",
+      "AE": "Emiratos Árabes Unidos",
+      "GB": "Reino Unido",
+      "US": "Estados Unidos",
+      "FR": "Francia",
+      "PT": "Portugal",
+      "IT": "Italia",
+      "DE": "Alemania",
+      "BE": "Bélgica",
+      "LU": "Luxemburgo",
+      "CH": "Suiza",
+      "SE": "Suecia",
+      "AT": "Austria"
     },
     "sectors": {
       "jewelry": "Joyerías",

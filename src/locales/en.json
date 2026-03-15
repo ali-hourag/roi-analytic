@@ -101,17 +101,40 @@
     "title": "Let's talk",
     "subtitle": "Tell us about your business and we'll get in touch to see how we can help.",
     "form": {
-      "name": "Full name *",
-      "namePlaceholder": "Your name",
+      "company": "Company name *",
+      "companyPlaceholder": "Your company",
       "email": "Email *",
       "emailPlaceholder": "you@email.com",
+      "country": "Country",
+      "countryPlaceholder": "Code",
       "phone": "Phone *",
-      "phonePlaceholder": "+34 600 000 000",
+      "phonePlaceholder": "600 000 000",
       "sector": "Sector *",
       "sectorPlaceholder": "Select your sector",
       "message": "How can we help?",
       "messagePlaceholder": "Tell us briefly what you need...",
       "submit": "Send message"
+    },
+    "validation": {
+      "required": "Required field",
+      "invalidEmail": "Invalid email",
+      "invalidPhone": "Enter a valid phone number for the selected country."
+    },
+    "countries": {
+      "ES": "Spain",
+      "NL": "Netherlands",
+      "AE": "United Arab Emirates",
+      "GB": "United Kingdom",
+      "US": "United States",
+      "FR": "France",
+      "PT": "Portugal",
+      "IT": "Italy",
+      "DE": "Germany",
+      "BE": "Belgium",
+      "LU": "Luxembourg",
+      "CH": "Switzerland",
+      "SE": "Sweden",
+      "AT": "Austria"
     },
     "sectors": {
       "jewelry": "Jewellery",

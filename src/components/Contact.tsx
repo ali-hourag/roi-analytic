@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { parsePhoneNumberFromString, type CountryCode } from "libphonenumber-js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
@@ -18,25 +29,70 @@ import {
   Clock,
   Shield,
 } from "lucide-react";
+import { PHONE_COUNTRIES, PHONE_COUNTRY_CODES } from "@/lib/phoneCountries";
+import { cn } from "@/lib/utils";
 
 const SECTOR_KEYS = ["jewelry", "hotels", "gyms", "ecommerce", "construction", "moving", "clinics", "other"] as const;
 
+const createContactSchema = (t: (key: string) => string) =>
+  z
+    .object({
+      company: z.string().min(1, t("contact.validation.required")),
+      email: z
+        .string()
+        .min(1, t("contact.validation.required"))
+        .email(t("contact.validation.invalidEmail")),
+      countryCode: z.enum(PHONE_COUNTRY_CODES as unknown as [string, ...string[]], {
+        required_error: t("contact.validation.required"),
+      }),
+      phone: z.string().min(1, t("contact.validation.required")),
+      sector: z.enum(SECTOR_KEYS, {
+        required_error: t("contact.validation.required"),
+      }),
+      message: z.string().optional(),
+    })
+    .superRefine((data, ctx) => {
+      const trimmed = data.phone?.trim() ?? "";
+      if (!trimmed) return;
+      const parsed = parsePhoneNumberFromString(trimmed, data.countryCode as CountryCode);
+      if (!parsed || !parsed.isValid()) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t("contact.validation.invalidPhone"),
+          path: ["phone"],
+        });
+      }
+    });
+
+type ContactFormValues = z.infer<ReturnType<typeof createContactSchema>>;
+
+const defaultCountryCode = "ES";
+
 const Contact = () => {
-  const { t } = useTranslation();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    sector: "",
-    message: "",
+  const { t, i18n } = useTranslation();
+
+  const schema = useMemo(() => createContactSchema(t), [t, i18n.language]);
+
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      company: "",
+      email: "",
+      countryCode: defaultCountryCode,
+      phone: "",
+      sector: undefined,
+      message: "",
+    },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const sectorLabel = formData.sector ? t(`contact.sectors.${formData.sector}`) : formData.sector;
-    const subject = encodeURIComponent(`Consulta de ${formData.name} - ${sectorLabel}`);
+  const onSubmit = (data: ContactFormValues) => {
+    const trimmed = data.phone.trim();
+    const parsed = parsePhoneNumberFromString(trimmed, data.countryCode as CountryCode);
+    const fullPhone = parsed?.formatInternational() ?? `${data.countryCode} ${trimmed}`;
+    const sectorLabel = t(`contact.sectors.${data.sector}`);
+    const subject = encodeURIComponent(`Consulta de ${data.company} - ${sectorLabel}`);
     const body = encodeURIComponent(
-      `Nombre: ${formData.name}\nEmail: ${formData.email}\nTeléfono: ${formData.phone}\nSector: ${sectorLabel}\n\nMensaje:\n${formData.message}`
+      `Empresa: ${data.company}\nEmail: ${data.email}\nTeléfono: ${fullPhone}\nSector: ${sectorLabel}\n\nMensaje:\n${data.message ?? ""}`
     );
     window.location.href = `mailto:roianalytic@hotmail.com?subject=${subject}&body=${body}`;
   };
@@ -79,84 +135,154 @@ const Contact = () => {
           className="max-w-2xl mx-auto"
         >
           <div className="bg-card rounded-2xl p-8 md:p-10 shadow-card border border-border/50">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">{t("contact.form.name")}</Label>
-                  <Input
-                    id="name"
-                    placeholder={t("contact.form.namePlaceholder")}
-                    required
-                    maxLength={100}
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="company"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t("contact.form.company")}</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder={t("contact.form.companyPlaceholder")}
+                            maxLength={100}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t("contact.form.email")}</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder={t("contact.form.emailPlaceholder")}
+                            maxLength={255}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">{t("contact.form.email")}</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder={t("contact.form.emailPlaceholder")}
-                    required
-                    maxLength={255}
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                </div>
-              </div>
 
-              <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="phone">{t("contact.form.phone")}</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder={t("contact.form.phonePlaceholder")}
-                    required
-                    maxLength={20}
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
+                  <FormLabel>{t("contact.form.phone")}</FormLabel>
+                  <div className="flex gap-2">
+                    <FormField
+                      control={form.control}
+                      name="countryCode"
+                      render={({ field }) => (
+                        <FormItem className="mt-0 shrink-0 w-[120px]">
+                          <FormControl>
+                            <select
+                              {...field}
+                              className={cn(
+                                "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                form.formState.errors.phone && "border-destructive"
+                              )}
+                              aria-label={t("contact.form.countryPlaceholder")}
+                            >
+                              {PHONE_COUNTRIES.map((country) => (
+                                <option key={country.code} value={country.code}>
+                                  {country.flag} {country.dialCode}
+                                </option>
+                              ))}
+                            </select>
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem className="mt-0 flex-1 min-w-0">
+                          <FormControl>
+                            <Input
+                              type="tel"
+                              inputMode="numeric"
+                              autoComplete="tel-national"
+                              placeholder={t("contact.form.phonePlaceholder")}
+                              className={cn(
+                                "flex-1 min-w-0",
+                                form.formState.errors.phone && "border-destructive"
+                              )}
+                              {...field}
+                              onChange={(e) =>
+                                field.onChange(e.target.value.replace(/\D/g, "").slice(0, 15))
+                              }
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="sector">{t("contact.form.sector")}</Label>
-                  <Select
-                    required
-                    value={formData.sector}
-                    onValueChange={(value) => setFormData({ ...formData, sector: value })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder={t("contact.form.sectorPlaceholder")} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {SECTOR_KEYS.map((key) => (
-                        <SelectItem key={key} value={key}>
-                          {t(`contact.sectors.${key}`)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="message">{t("contact.form.message")}</Label>
-                <Textarea
-                  id="message"
-                  placeholder={t("contact.form.messagePlaceholder")}
-                  rows={4}
-                  maxLength={1000}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                <FormField
+                  control={form.control}
+                  name="sector"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t("contact.form.sector")}</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder={t("contact.form.sectorPlaceholder")} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {SECTOR_KEYS.map((key) => (
+                            <SelectItem key={key} value={key}>
+                              {t(`contact.sectors.${key}`)}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <Button variant="hero" size="lg" type="submit" className="w-full">
-                <Send className="w-5 h-5" />
-                {t("contact.form.submit")}
-              </Button>
-            </form>
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t("contact.form.message")}</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder={t("contact.form.messagePlaceholder")}
+                          rows={4}
+                          maxLength={1000}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button variant="hero" size="lg" type="submit" className="w-full">
+                  <Send className="w-5 h-5" />
+                  {t("contact.form.submit")}
+                </Button>
+              </form>
+            </Form>
           </div>
 
           {/* Trust indicators */}

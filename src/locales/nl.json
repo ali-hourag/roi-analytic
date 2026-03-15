@@ -101,17 +101,40 @@
     "title": "Laten we praten",
     "subtitle": "Vertel over uw bedrijf en we nemen contact op om te kijken hoe we kunnen helpen.",
     "form": {
-      "name": "Volledige naam *",
-      "namePlaceholder": "Uw naam",
+      "company": "Bedrijfsnaam *",
+      "companyPlaceholder": "Uw bedrijf",
       "email": "E-mail *",
       "emailPlaceholder": "u@email.com",
+      "country": "Land",
+      "countryPlaceholder": "Code",
       "phone": "Telefoon *",
-      "phonePlaceholder": "+31 6 00000000",
+      "phonePlaceholder": "6 00000000",
       "sector": "Sector *",
       "sectorPlaceholder": "Selecteer uw sector",
       "message": "Hoe kunnen we helpen?",
       "messagePlaceholder": "Vertel kort wat u nodig heeft...",
       "submit": "Bericht versturen"
+    },
+    "validation": {
+      "required": "Verplicht veld",
+      "invalidEmail": "Ongeldig e-mailadres",
+      "invalidPhone": "Voer een geldig telefoonnummer in voor het geselecteerde land."
+    },
+    "countries": {
+      "ES": "Spanje",
+      "NL": "Nederland",
+      "AE": "Verenigde Arabische Emiraten",
+      "GB": "Verenigd Koninkrijk",
+      "US": "Verenigde Staten",
+      "FR": "Frankrijk",
+      "PT": "Portugal",
+      "IT": "Italië",
+      "DE": "Duitsland",
+      "BE": "België",
+      "LU": "Luxemburg",
+      "CH": "Zwitserland",
+      "SE": "Zweden",
+      "AT": "Oostenrijk"
     },
     "sectors": {
       "jewelry": "Juweliers",
