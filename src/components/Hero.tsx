@@ -1,16 +1,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, Target, BarChart3 } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 
 const Hero = () => {
   const scrollToContact = () => {
     document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToServices = () => {
-    document
-      .getElementById("servicios")
-      ?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -84,70 +78,34 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right - Stats cards */}
+          {/* Right - Single stat card */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative"
+            className="relative flex items-center justify-center"
           >
-            <div className="grid grid-cols-2 gap-4">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="col-span-2 glass-card rounded-2xl p-6 shadow-card"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
-                    <TrendingUp className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold font-display text-foreground">
-                      -40%
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Reducción coste por lead
-                    </p>
-                  </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="glass-card rounded-2xl p-8 shadow-card max-w-sm w-full"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center">
+                  <TrendingUp className="w-7 h-7 text-primary-foreground" />
                 </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="glass-card rounded-2xl p-6 shadow-card"
-              >
-                <div className="w-10 h-10 rounded-xl bg-gradient-secondary flex items-center justify-center mb-3">
-                  <Target className="w-5 h-5 text-secondary-foreground" />
+                <div>
+                  <p className="text-4xl font-bold font-display text-foreground">
+                    -40%
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Reducción coste por lead
+                  </p>
                 </div>
-                <p className="text-2xl font-bold font-display text-foreground">
-                  35-50
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Leads/mes cualificados
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="glass-card rounded-2xl p-6 shadow-card"
-              >
-                <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center mb-3">
-                  <BarChart3 className="w-5 h-5 text-primary-foreground" />
-                </div>
-                <p className="text-2xl font-bold font-display text-foreground">
-                  30 días
-                </p>
-                <p className="text-sm text-muted-foreground">Garantía total</p>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

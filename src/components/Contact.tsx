@@ -1,19 +1,54 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import {
-  Calendar,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  MessageCircle,
+  Send,
   Clock,
   Shield,
-  MessageCircle,
-  ArrowRight,
 } from "lucide-react";
 
-const CALENDLY_URL = "https://calendly.com/roianalytic-info/30-min";
+const SECTORS = [
+  "Joyerías",
+  "Hoteles",
+  "Gimnasios",
+  "E-commerce",
+  "Construcción",
+  "Mudanzas",
+  "Clínicas Dentales",
+  "Otro",
+];
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    sector: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Consulta de ${formData.name} - ${formData.sector}`);
+    const body = encodeURIComponent(
+      `Nombre: ${formData.name}\nEmail: ${formData.email}\nTeléfono: ${formData.phone}\nSector: ${formData.sector}\n\nMensaje:\n${formData.message}`
+    );
+    window.location.href = `mailto:roianalytic@hotmail.com?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section id="contacto" className="section-padding relative overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-cta opacity-5" />
 
       <div className="container relative z-10">
@@ -38,97 +73,120 @@ const Contact = () => {
             ¿Hablamos?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Sesión inicial de 10 minutos para valorar si encaja con tu negocio.
-            Sin compromiso ni coste.
+            Cuéntanos sobre tu negocio y te contactaremos para valorar cómo podemos ayudarte.
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Calendly Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col"
-          >
-            <div className="bg-card rounded-2xl p-8 shadow-card flex-1">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-secondary flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-secondary-foreground" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="max-w-2xl mx-auto"
+        >
+          <div className="bg-card rounded-2xl p-8 md:p-10 shadow-card border border-border/50">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Nombre completo *</Label>
+                  <Input
+                    id="name"
+                    placeholder="Tu nombre"
+                    required
+                    maxLength={100}
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
                 </div>
-                <div>
-                  <h3 className="font-display text-xl font-bold">
-                    Reserva una llamada
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    30 min · Sin compromiso
-                  </p>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="tu@email.com"
+                    required
+                    maxLength={255}
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
                 </div>
               </div>
 
-              <p className="text-muted-foreground mb-6">
-                Agenda una sesión gratuita de 30 minutos para conocer tu negocio
-                y valorar si podemos ayudarte a conseguir más clientes con
-                Google Ads.
-              </p>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Teléfono *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+34 600 000 000"
+                    required
+                    maxLength={20}
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="sector">Sector *</Label>
+                  <Select
+                    required
+                    value={formData.sector}
+                    onValueChange={(value) => setFormData({ ...formData, sector: value })}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona tu sector" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SECTORS.map((s) => (
+                        <SelectItem key={s} value={s}>
+                          {s}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
 
-              <Button variant="hero" size="lg" className="w-full mb-8" asChild>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Calendar className="w-5 h-5" />
-                  Agendar sesión gratuita
-                  <ArrowRight className="w-5 h-5" />
-                </a>
+              <div className="space-y-2">
+                <Label htmlFor="message">¿Cómo podemos ayudarte?</Label>
+                <Textarea
+                  id="message"
+                  placeholder="Cuéntanos brevemente qué necesitas..."
+                  rows={4}
+                  maxLength={1000}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                />
+              </div>
+
+              <Button variant="hero" size="lg" type="submit" className="w-full">
+                <Send className="w-5 h-5" />
+                Enviar mensaje
               </Button>
+            </form>
+          </div>
 
-              <div className="space-y-4 pt-6 border-t border-border">
-                <p className="text-sm font-medium text-foreground">
-                  ¿Qué incluye la sesión?
-                </p>
-                <ul className="space-y-3 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                    Análisis rápido de tu situación actual
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                    Valoración del potencial de Google Ads para tu negocio
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                    Propuesta personalizada si encajamos
-                  </li>
-                </ul>
-              </div>
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mt-6"
+          >
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>Respuesta en 24h</span>
             </div>
-
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mt-6"
-            >
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span>Respuesta en 24h</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4" />
-                <span>Garantía 30 días</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MessageCircle className="w-4 h-4" />
-                <span>Sin compromiso</span>
-              </div>
-            </motion.div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              <span>Garantía 30 días</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MessageCircle className="w-4 h-4" />
+              <span>Sin compromiso</span>
+            </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
