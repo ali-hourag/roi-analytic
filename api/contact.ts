@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 
 const resendApiKey = process.env.RESEND_API_KEY;
-const TO_EMAIL = "info@roianalytic.es";
+const TO_EMAIL = process.env.RESEND_TO_EMAIL ?? "info@roianalytic.es";
 const fromEmailRaw = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
 const fromEmail = fromEmailRaw.includes("<") ? fromEmailRaw : `ROI Analytic <${fromEmailRaw}>`;
 
