@@ -51,5 +51,15 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Static form so Netlify detects it at build time; the real form is rendered by React -->
+    <form name="contact" data-netlify="true" hidden>
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <input type="text" name="countryCode" />
+      <input type="text" name="phone" />
+      <input type="text" name="sector" />
+      <textarea name="message"></textarea>
+    </form>
   </body>
 </html>

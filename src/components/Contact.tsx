@@ -93,21 +93,22 @@ const Contact = () => {
     const fullPhone = parsed?.formatInternational() ?? `${data.countryCode} ${trimmed}`;
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          "form-name": "contact",
           company: data.company,
           email: data.email,
+          countryCode: data.countryCode,
           phone: fullPhone,
           sector: data.sector,
           message: data.message ?? "",
-        }),
+        }).toString(),
       });
-      const json = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(json.error ?? t("contact.form.error"));
+        throw new Error(t("contact.form.error"));
       }
       toast.success(t("contact.form.success"));
       form.reset({
@@ -162,7 +163,13 @@ const Contact = () => {
         >
           <div className="bg-card rounded-2xl p-8 md:p-10 shadow-card border border-border/50">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+                name="contact"
+                data-netlify="true"
+              >
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="grid sm:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -265,6 +272,7 @@ const Contact = () => {
                       <Select
                         onValueChange={field.onChange}
                         value={field.value}
+                        name="sector"
                       >
                         <FormControl>
                           <SelectTrigger>
